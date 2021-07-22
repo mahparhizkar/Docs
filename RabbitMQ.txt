@@ -1,0 +1,27 @@
+Direct Exchange:
+Based on the routing key a message is sent to the queue having the same routing key specified in the binding rule. 
+The routing key of exchange and the binding queue have to be an exact match. A message is sent to exactly one queue.
+
+http://localhost:8080/rabbitmq/direct/producer?exchangeName=direct-exchange&routingKey=admin&messageData=HelloWorld
+--------------------------------------------------------------------------------------------------------------------
+
+Fanout Exchange:
+The message is routed to all the available bounded queues. 
+The routing key if provided is completely ignored. So this is a kind of publish-subscribe design pattern.
+
+http://localhost:8080/rabbitmq/fanout/producer?exchangeName=fanout-exchange&messageData=HelloWorld
+--------------------------------------------------------------------------------------------------------------------
+
+Topic Exchange:
+Here again the routing key is made use of. But unlike in direct exchange type, here the routing key of the exchange and the bound queues should not necessarily be an exact match. 
+Using regular expressions like wildcard we can send the exchange to multiple bound queues.
+
+http://localhost:8080//rabbitmq/topic/producer?exchangeName=topic-exchange&routingKey=queue.admin&messageData=HelloWorld
+--------------------------------------------------------------------------------------------------------------------
+
+Header Exchange:
+In this type of exchange the routing queue is selected based on the criteria specified in the headers instead of the routing key. 
+This is similar to topic exchange type, but here we can specify complex criteria for selecting routing queues.
+
+http://localhost:8080/rabbitmq/header/producer?exchangeName=header-exchange&department=admin&messageData=HelloWorld
+--------------------------------------------------------------------------------------------------------------------
